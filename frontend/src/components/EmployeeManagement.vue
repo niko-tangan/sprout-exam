@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Table from "./components/Table.vue";
-import Sidebar from "./components/Sidebar.vue";
+import Table from "./Table.vue";
+import Sidebar from "./Sidebar.vue";
 import { ref, getCurrentInstance } from "vue";
 import axios from "axios";
 
