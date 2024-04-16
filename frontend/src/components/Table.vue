@@ -91,7 +91,7 @@ const editModal = ref<InstanceType<typeof Modal>>();
 const deleteModal = ref<InstanceType<typeof Modal>>();
 
 const selectedRow = ref(-1);
-let selectedItem: object;
+let selectedItem: any;
 
 function showEdit(item: object) {
   editModal.value?.open();
