@@ -1,13 +1,24 @@
 from sqlalchemy import Engine, delete
-from sqlmodel import Session, create_engine, select
+from sqlmodel import SQLModel, Session, create_engine, select
 from .config import get_settings
 
 db_uri = get_settings().db_uri
-engine = create_engine(db_uri, echo=True)
+connect_args = {"check_same_thread": False}
+engine = create_engine(db_uri, echo=True, connect_args=connect_args)
+
+
+def init_db():
+    SQLModel.metadata.drop_all(engine)
+    SQLModel.metadata.create_all(engine)
 
 
 async def get_engine() -> Engine:
     return engine
+
+
+async def get_session():
+    with Session(engine) as session:
+        yield session
 
 
 # @app.get("/env")
